@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,7 @@ import (
 	"github.com/hanhnguyenduc/config-server/redisclient"
 	"github.com/hanhnguyenduc/config-server/routes"
 	"github.com/hanhnguyenduc/config-server/setting"
+	"github.com/hanhnguyenduc/config-server/utils"
 )
 
 func main() {
@@ -28,4 +30,8 @@ func main() {
 	}
 
 	server.ListenAndServe()
+	err := utils.ConfirmHealthy()
+	if err != nil {
+		log.Printf("[error] Can not set health flag | %v", err)
+	}
 }
