@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
 
@@ -12,6 +13,14 @@ import (
 )
 
 func main() {
+	isDeploy := flag.Bool(
+		"deploy",
+		false,
+		"to know this app is deploy or not, if this app is deploying, load config from envs instead",
+	)
+	flag.Parse()
+	setting.Setup(isDeploy)
+	flag.Parse()
 	redisclient.Setup()
 	core.Setup()
 	// Define server
