@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+        name: cm-smartivr-config-server
+        labels:
+                app: smartivr-config-server
+data:
+        app.ini: |
+                [app]
+                StatusSuccess = 0
+                StatusError = -1
+
+                [server]
+                #debug or release
+                RunMode = debug
+                HTTPPort = 8125
+                ReadTimeout = 60
+                WriteTimeout = 60
+                JWTAccessTokenSecretKey = bKwmOVezY5
+                JWTAccessTokenExpireMinutes = 21600
+                JWTAccessTokenRedisPrefix = IVR_AT_
+                JWTRefreshTokenSecretKey = 6iv6wevaY2
+                JWTRefreshTokenExpireHours = 21600
+                JWTRefreshTokenRedisPrefix = IVR_RT_
+                HTTPHost = 0.0.0.0
+
+                [database]
+                Type = mysql
+                User = os_callbot
+                Password = os_callbot@123!
+                Host = 103.141.140.231:3060
+                Name = smartivr_platform
+                TablePrefix = 
+                MaxIdleConnections = 10
+                MaxOpenConnections = 100
+
+                [redis]
+                RedisAddress = service-redis-alpine:6379
+                RedisPassword = 
+                RedisDB = 0
+        conf.go: |
+                package conf
+
+                import "time"
+
+                var RedisTimeout time.Duration = 100 * time.Second
+
+                var MaxTimeToResponse int64 = 10 * 1000 // 20 second
+
