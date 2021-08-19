@@ -14,6 +14,7 @@ import (
 )
 
 func main() {
+	setting.Setup()
 	redisclient.Setup()
 	core.Setup()
 	// Define server

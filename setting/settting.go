@@ -78,6 +78,11 @@ func Setup() {
 	mapTo("server", ServerSetting)
 	mapTo("database", DatabaseSetting)
 	mapTo("redis", RedisSetting)
+
+	log.Printf("[info] setting | AppSetting: %v", AppSetting)
+	log.Printf("[info] setting | ServerSetting: %v", ServerSetting)
+	log.Printf("[info] setting | DatabaseSetting: %v", DatabaseSetting)
+	log.Printf("[info] setting | RedisSetting: %v", RedisSetting)
 	// log.Printf("port: %d", ServerSetting.HTTPPort)
 }
 
