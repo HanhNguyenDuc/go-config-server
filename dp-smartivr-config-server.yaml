@@ -4,8 +4,9 @@ metadata:
         name: dp-smartivr-config-server
         labels:
                 app: smartivr-config-server
+        namespace: smartivr
 spec:
-        replicas: 2
+        replicas: 3
         selector:
                 matchLabels:
                         app: smartivr-config-server
@@ -16,7 +17,7 @@ spec:
                 spec:
                         containers:
                                 - name: smartivr-config-server
-                                  image: "smartivr-config-server:latest"
+                                  image: "dockerhub.smartcall.ai/smartivr-config-server:v2"
                                   imagePullPolicy: IfNotPresent
                                   volumeMounts:
                                           - name: config
@@ -31,3 +32,5 @@ spec:
                                                     path: "app.ini"
                                                   - key: "conf.go"
                                                     path: "conf.go"
+                        imagePullSecrets:
+                                - name: regcred

@@ -4,6 +4,7 @@ metadata:
         name: cm-smartivr-config-server
         labels:
                 app: smartivr-config-server
+        namespace: smartivr
 data:
         app.ini: |
                 [app]
